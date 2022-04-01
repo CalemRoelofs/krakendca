@@ -1,0 +1,22 @@
+{
+  "fiatCurrency": "EUR",
+  "fulfilMinOrder": true,
+  "assets": [
+    {
+      "asset": "BTC",
+      "amountInFiat": 10
+    },
+    {
+      "asset": "ETH",
+      "amountInFiat": 10
+    },
+    {
+      "asset": "DOT",
+      "amountInFiat": 2.5
+    },
+    {
+      "asset": "ALGO",
+      "amountInFiat": 2.5
+    }
+  ]
+}
