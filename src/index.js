@@ -6,14 +6,18 @@ const logger = require('./winston-setup');
 
 const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
 const telegramChatId = process.env.TELEGRAM_CHAT_ID;
-const telegramBot = new TelegramBot(telegramBotToken, { polling: false });
 const key = process.env.KRAKEN_API_KEY;
 const secret = process.env.KRAKEN_API_SECRET;
 const validateTransactionOnly = (process.env.VALIDATE_TRANSACTION_ONLY === 'true');
 const client = new KrakenClient(key, secret);
 const config = JSON.parse(fs.readFileSync('config.json'));
 
-const sendUpdateToTelegram = async (message) => telegramBot.sendMessage(telegramChatId, message);
+const sendUpdateToTelegram = async (message) => {
+  if (telegramBotToken && telegramChatId) {
+    const telegramBot = new TelegramBot(telegramBotToken, { polling: false });
+    telegramBot.sendMessage(telegramChatId, message);
+  }
+};
 
 (async () => {
   logger.log('info', 'Starting KrakenDCA');
